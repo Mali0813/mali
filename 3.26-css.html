@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 高级概念展示</title>
+    <style>
+        /* 基础布局 */
+        html, body {
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%) fixed;
+            padding: 40px;
+            font-family: "Microsoft YaHei", -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #2c3e50;
+            box-sizing: border-box;
+            line-height: 1.6;
+        }
+
+        /* 响应式设计 */
+        @media screen and (max-width: 768px) {
+            body {
+                padding: 20px;
+            }
+        }
+
+        /* 标题样式 */
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #3498db;
+            font-size: 2.5em;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin: 30px 0 20px;
+            padding-left: 15px;
+            border-left: 4px solid #3498db;
+            font-size: 1.8em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h2::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(to right, #3498db, transparent);
+            margin-left: 15px;
+        }
+
+        /* 容器样式 */
+        .section-container {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        /* 背景示例 */
+        .bg-demos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 10px;
+        }
+
+        .bg-demo {
+            height: 180px;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .bg-demo:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .bg-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 15px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            text-align: center;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .bg-demo:hover .bg-label {
+            transform: translateY(0);
+        }
+
+        .bg-color {
+            background: #4CAF50;
+            background-image: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+        }
+
+        .bg-image {
+            background-image: url('https://source.unsplash.com/random/800x600');
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.5s ease;
+        }
+
+        .bg-image:hover {
+            transform: scale(1.1);
+        }
+
+        .bg-gradient {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            background-size: 200% 200%;
+            animation: gradientShift 8s infinite linear;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .bg-pattern {
+            background-color: #3498db;
+            background-image: 
+                linear-gradient(45deg, rgba(255,255,255,.15) 25%, transparent 25%),
+                linear-gradient(-45deg, rgba(255,255,255,.15) 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, rgba(255,255,255,.15) 75%),
+                linear-gradient(-45deg, transparent 75%, rgba(255,255,255,.15) 75%);
+            background-size: 20px 20px;
+            animation: patternMove 20s linear infinite;
+        }
+
+        @keyframes patternMove {
+            from { background-position: 0 0; }
+            to { background-position: 40px 40px; }
+        }
+
+        /* 盒模型示例 */
+        .box-model-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .box-model {
+            padding: 25px;
+            border: 5px solid #3498db;
+            margin: 15px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .box-model::before {
+            content: attr(data-type);
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: white;
+            padding: 0 10px;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        .box-content {
+            box-sizing: content-box;
+            background: linear-gradient(135deg, #e1f5fe 0%, #b3e5fc 100%);
+        }
+
+        .box-border {
+            box-sizing: border-box;
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+        }
+
+        /* Flex 布局 */
+        .flex-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 12px;
+        }
+
+        .flex-item {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2em;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .flex-item:hover {
+            transform: translateY(-10px) rotate(5deg);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Grid 布局 */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 12px;
+        }
+
+        .grid-item {
+            background: linear-gradient(135deg, #2196F3 0%, #1976d2 100%);
+            padding: 25px;
+            color: white;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .grid-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        /* 动画效果 */
+        .animation-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .animation-item {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: auto;
+        }
+
+        /* 过渡动画 */
+        .transition-box {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #FF5722 0%, #f4511e 100%);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .transition-box::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.3s ease;
+        }
+
+        .transition-box:hover {
+            transform: scale(1.1) rotate(45deg);
+            background: linear-gradient(135deg, #E91E63 0%, #d81b60 100%);
+        }
+
+        .transition-box:hover::after {
+            transform: rotate(45deg) translate(50%, 50%);
+        }
+
+        /* 关键帧动画 */
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+                animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+            }
+            50% {
+                transform: translateY(-25px);
+                animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+            }
+        }
+
+        .keyframe-box {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #9C27B0 0%, #7b1fa2 100%);
+            border-radius: 12px;
+            animation: bounce 2s infinite;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        @keyframes colorChange {
+            0% {
+                background: linear-gradient(135deg, #4CAF50 0%, #43a047 100%);
+                transform: scale(1);
+            }
+            50% {
+                background: linear-gradient(135deg, #2196F3 0%, #1976d2 100%);
+                transform: scale(1.1);
+            }
+            100% {
+                background: linear-gradient(135deg, #4CAF50 0%, #43a047 100%);
+                transform: scale(1);
+            }
+        }
+
+        .color-animation {
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            animation: colorChange 3s infinite;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* 3D 变换 */
+        .transform-3d {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #FFC107 0%, #ffa000 100%);
+            border-radius: 12px;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .transform-3d:hover {
+            transform: perspective(1000px) rotateY(180deg);
+        }
+    </style>
+</head>
+<body>
+    <h1>CSS 高级概念展示</h1>
+
+    <!-- 背景示例 -->
+    <div class="section-container">
+        <h2>背景样式</h2>
+        <div class="bg-demos">
+            <div class="bg-demo bg-color">
+                <span class="bg-label">纯色背景</span>
+            </div>
+            <div class="bg-demo bg-image">
+                <span class="bg-label">图片背景</span>
+            </div>
+            <div class="bg-demo bg-gradient">
+                <span class="bg-label">渐变背景</span>
+            </div>
+            <div class="bg-demo bg-pattern">
+                <span class="bg-label">图案背景</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 盒模型示例 -->
+    <div class="section-container">
+        <h2>盒模型</h2>
+        <div class="box-model-container">
+            <div class="box-model box-content" data-type="content-box">
+                内容盒模型
+            </div>
+            <div class="box-model box-border" data-type="border-box">
+                边框盒模型
+            </div>
+        </div>
+    </div>
+
+    <!-- 布局示例 -->
+    <div class="section-container">
+        <h2>布局方式</h2>
+        <h3>Flex 布局</h3>
+        <div class="flex-container">
+            <div class="flex-item">1</div>
+            <div class="flex-item">2</div>
+            <div class="flex-item">3</div>
+            <div class="flex-item">4</div>
+        </div>
+
+        <h3>Grid 布局</h3>
+        <div class="grid-container">
+            <div class="grid-item">1</div>
+            <div class="grid-item">2</div>
+            <div class="grid-item">3</div>
+            <div class="grid-item">4</div>
+        </div>
+    </div>
+
+    <!-- 动画示例 -->
+    <div class="section-container">
+        <h2>动画效果</h2>
+        <div class="animation-container">
+            <div class="animation-item">
+                <div class="transition-box" title="悬停效果"></div>
+            </div>
+            <div class="animation-item">
+                <div class="keyframe-box" title="弹跳动画"></div>
+            </div>
+            <div class="animation-item">
+                <div class="color-animation" title="颜色变化"></div>
+            </div>
+            <div class="animation-item">
+                <div class="transform-3d" title="3D变换"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
