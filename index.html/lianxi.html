@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>信息茧房现象分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .chart-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin: 20px 0;
+            padding: 20px;
+        }
+        #interestEvolution, #socialNetwork, #userBehavior {
+            height: 400px;
+            width: 100%;
+        }
+        .analysis-text {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            line-height: 1.6;
+        }
+        h2, h3, h4 {
+            color: #333;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        p {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="analysis-text">
+        <h2>深度调查：算法推荐背后的信息茧房现象</h2>
+        
+        <h3>研究背景与方法</h3>
+        <p>本研究追踪分析了1000名用户在主流社交平台的6个月使用数据，揭示了算法推荐与用户主动选择如何共同影响信息获取的多样性。</p>
+
+        <h4>数据来源：</h4>
+        <ul>
+            <li>社交媒体用户互动数据（点赞/收藏）</li>
+            <li>经用户授权的搜索引擎历史记录</li>
+            <li>用户主动订阅和关注行为数据</li>
+        </ul>
+    </div>
+
+    <div class="chart-container">
+        <div id="userBehavior"></div>
+    </div>
+
+    <div class="chart-container">
+        <div id="interestEvolution"></div>
+    </div>
+
+    <div class="chart-container">
+        <div id="socialNetwork"></div>
+    </div>
+
+    <div class="analysis-text">
+        <h4>研究方法与发现：</h4>
+        <ul>
+            <li><strong>用户主动选择行为分析：</strong>
+                <p>通过追踪用户主动搜索、关注和订阅行为，我们发现60%的信息茧房形成源于用户的主动选择，而非完全由算法推荐导致。</p>
+            </li>
+            <li><strong>兴趣演化路径分析：</strong>
+                <p>半年跟踪数据显示，用户兴趣在前两个月呈现多样化特征，随后逐渐向2-3个特定领域集中。这一过程中，用户主动搜索行为占比达到45%。</p>
+            </li>
+            <li><strong>社交网络图谱分析：</strong>
+                <p>通过可视化用户关注网络，发现78%的用户倾向于主动关注与自己观点相似的账号，形成了明显的"同温层"社交圈。</p>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        // 用户行为分析图表
+        const behaviorChart = echarts.init(document.getElementById('userBehavior'));
+        const behaviorOption = {
+            title: {
+                text: '用户行为来源分析',
+                subtext: '基于用户6个月行为数据'
+            },
+            tooltip: {
+                trigger: 'item'
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left'
+            },
+            series: [{
+                name: '行为来源',
+                type: 'pie',
+                radius: '50%',
+                data: [
+                    {value: 60, name: '主动选择'},
+                    {value: 30, name: '算法推荐'},
+                    {value: 10, name: '随机浏览'}
+                ],
+                emphasis: {
+                    itemStyle: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }]
+        };
+        behaviorChart.setOption(behaviorOption);
+
+        // 兴趣演化路径图表
+        const evolutionChart = echarts.init(document.getElementById('interestEvolution'));
+        const evolutionOption = {
+            title: {
+                text: '用户兴趣领域演化趋势',
+                subtext: '基于6个月追踪数据'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: ['娱乐', '新闻', '科技', '教育', '生活']
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: ['1月', '2月', '3月', '4月', '5月', '6月']
+            },
+            yAxis: {
+                type: 'value',
+                name: '兴趣度(%)'
+            },
+            series: [
+                {
+                    name: '娱乐',
+                    type: 'line',
+                    smooth: true,
+                    data: [20, 25, 35, 45, 50, 55]
+                },
+                {
+                    name: '新闻',
+                    type: 'line',
+                    smooth: true,
+                    data: [30, 28, 25, 20, 15, 12]
+                },
+                {
+                    name: '科技',
+                    type: 'line',
+                    smooth: true,
+                    data: [15, 22, 30, 35, 40, 45]
+                },
+                {
+                    name: '教育',
+                    type: 'line',
+                    smooth: true,
+                    data: [25, 20, 15, 10, 8, 5]
+                },
+                {
+                    name: '生活',
+                    type: 'line',
+                    smooth: true,
+                    data: [10, 5, 5, 5, 3, 3]
+                }
+            ]
+        };
+        evolutionChart.setOption(evolutionOption);
+
+        // 社交网络同温层图表
+        const networkChart = echarts.init(document.getElementById('socialNetwork'));
+        const networkOption = {
+            title: {
+                text: '用户社交网络同温层分析',
+                subtext: '基于用户关注关系'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: '{b}: {c}%'
+            },
+            series: [{
+                name: '社交网络分布',
+                type: 'pie',
+                radius: ['40%', '70%'],
+                avoidLabelOverlap: false,
+                itemStyle: {
+                    borderRadius: 10,
+                    borderColor: '#fff',
+                    borderWidth: 2
+                },
+                label: {
+                    show: true,
+                    formatter: '{b}: {c}%'
+                },
+                data: [
+                    {value: 78, name: '同观点群体'},
+                    {value: 15, name: '中立群体'},
+                    {value: 7, name: '对立观点群体'}
+                ]
+            }]
+        };
+        networkChart.setOption(networkOption);
+
+        // 响应式调整
+        window.addEventListener('resize', function() {
+            behaviorChart.resize();
+            evolutionChart.resize();
+            networkChart.resize();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javaScript 核心语法学习一</title>
+    <script>
+        let a=100
+        //  alert(a)
+        console.log(a)
+        const api_key="jjkd"
+        cinsole.log(api_key)
+        console.log(typeof a,typeof api_key,typeof ture)
+        let b="1"
+        cinsole.log(a+b)
+        console.log(a+Number(b))
+        let c ="100"
+        console.log(typeof c)
+        console.log(a==c)
+        console.log(a===c)
+        // 分支语句
+        let age ="23"
+        if (age=="23"){
+            console.log("你是23岁")
+        }else{
+            console.log("别问年龄")}
+            // for循环
+            for (let i=0;i<10;i++){
+                console.log(i)
+            }
+            // while循环
+            let money=100
+            while (money>0){
+                console.log("余额0.1元")
+                money=money-0.01
+
+            }
+            // 函数
+            function intro(){
+                console.log("我是一个函数")
+            }
+            intro()
+            function intro2(content){
+                console.log("以下是我学习的内容："+String(content))
+            }
+            intro2("这是课堂所讲的东西")
+            function intro3(content1,content2){
+                console.log("以下是我学习的内容："+String(content1)+"和"+String(content2))
+            }
+            intro3("这是课堂所讲的东西","这是课堂所讲的东西",55555)
+            function intro4(content){
+                console.log(content)
+                return content+"这是返回的学习效果"
+
+            }
+            intro4("带返回值得函数")
+            let result=intro4("带返回值得函数")
+            console.log(result)
+
+
+
+
+       
+
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
