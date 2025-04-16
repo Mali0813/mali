@@ -6,8 +6,22 @@
     <title>语法练习</title>
 </head>
 <body>
-    <!-- 可以添加一些HTML元素来展示结果 -->
-    <div id="result"></div>
+    <h1 id="demo" onclick="alert('没事别找我')">这是标题的原始内容</h1>
+
+    <script>
+        let myh1 = document.getElementById("demo");
+        console.log(myh1);
+        //1.改变元素的内容
+        myh1.innerHTML = "这是标题的新内容";
+        //2.改变元素的样式
+        myh1.style.color = "red";
+        //3.增加事件
+        myh1.onclick = function(){
+            alert("有事也别找我");
+        }
+
+    </script>
+       
 
     <script>
         //类和对象

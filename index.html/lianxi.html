@@ -3,217 +3,230 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>信息茧房现象分析</title>
+    <title>儿童听力损失全球数据分析</title>
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
     <style>
         body {
             font-family: 'Microsoft YaHei', sans-serif;
             margin: 0;
             padding: 20px;
-            background: #f5f5f5;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .data-section {
+            background: white;
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .highlight-data {
+            font-size: 2em;
+            color: #e74c3c;
+            margin: 20px 0;
+            text-align: center;
+            padding: 20px;
+            background: #fff3f3;
+            border-radius: 8px;
+        }
+        .chart-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 20px 0;
         }
         .chart-container {
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .full-width {
+            grid-column: 1 / -1;
+        }
+        .source {
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 10px;
+            font-style: italic;
+        }
+        .data-highlight {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
             margin: 20px 0;
-            padding: 20px;
         }
-        #interestEvolution, #socialNetwork, #userBehavior {
-            height: 400px;
-            width: 100%;
-        }
-        .analysis-text {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            line-height: 1.6;
-        }
-        h2, h3, h4 {
-            color: #333;
-        }
-        ul {
-            padding-left: 20px;
-        }
-        p {
+        .stat-box {
+            text-align: center;
+            padding: 15px;
+            background: #fff;
+            border-radius: 8px;
             margin: 10px 0;
         }
     </style>
 </head>
 <body>
-    <div class="analysis-text">
-        <h2>深度调查：算法推荐背后的信息茧房现象</h2>
-        
-        <h3>研究背景与方法</h3>
-        <p>本研究追踪分析了1000名用户在主流社交平台的6个月使用数据，揭示了算法推荐与用户主动选择如何共同影响信息获取的多样性。</p>
+    <div class="container">
+        <h1>全球儿童听力损失数据分析报告</h1>
 
-        <h4>数据来源：</h4>
-        <ul>
-            <li>社交媒体用户互动数据（点赞/收藏）</li>
-            <li>经用户授权的搜索引擎历史记录</li>
-            <li>用户主动订阅和关注行为数据</li>
-        </ul>
-    </div>
+        <div class="data-section">
+            <div class="highlight-data">
+                "全球每分钟有3个儿童因可预防原因失去听力"
+            </div>
+            <div class="highlight-data">
+                "每年约157万儿童因可预防原因导致听力损失"
+            </div>
 
-    <div class="chart-container">
-        <div id="userBehavior"></div>
-    </div>
+            <div class="data-highlight">
+                <div class="stat-box">
+                    <h3>每日影响</h3>
+                    <p>4,320名儿童</p>
+                </div>
+                <div class="stat-box">
+                    <h3>每月影响</h3>
+                    <p>131,000名儿童</p>
+                </div>
+            </div>
 
-    <div class="chart-container">
-        <div id="interestEvolution"></div>
-    </div>
-
-    <div class="chart-container">
-        <div id="socialNetwork"></div>
-    </div>
-
-    <div class="analysis-text">
-        <h4>研究方法与发现：</h4>
-        <ul>
-            <li><strong>用户主动选择行为分析：</strong>
-                <p>通过追踪用户主动搜索、关注和订阅行为，我们发现60%的信息茧房形成源于用户的主动选择，而非完全由算法推荐导致。</p>
-            </li>
-            <li><strong>兴趣演化路径分析：</strong>
-                <p>半年跟踪数据显示，用户兴趣在前两个月呈现多样化特征，随后逐渐向2-3个特定领域集中。这一过程中，用户主动搜索行为占比达到45%。</p>
-            </li>
-            <li><strong>社交网络图谱分析：</strong>
-                <p>通过可视化用户关注网络，发现78%的用户倾向于主动关注与自己观点相似的账号，形成了明显的"同温层"社交圈。</p>
-            </li>
-        </ul>
+            <div class="chart-grid">
+                <div class="chart-container">
+                    <div id="timeDistribution" style="width: 100%; height: 400px;"></div>
+                    <p class="source">数据来源：WHO全球儿童听力健康监测2023</p>
+                </div>
+                <div class="chart-container">
+                    <div id="preventionProgress" style="width: 100%; height: 400px;"></div>
+                    <p class="source">数据来源：国际儿童听力保护联盟2023</p>
+                </div>
+                <div class="chart-container full-width">
+                    <div id="globalTrend" style="width: 100%; height: 400px;"></div>
+                    <p class="source">数据来源：全球儿童健康数据库2023</p>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
-        // 用户行为分析图表
-        const behaviorChart = echarts.init(document.getElementById('userBehavior'));
-        const behaviorOption = {
-            title: {
-                text: '用户行为来源分析',
-                subtext: '基于用户6个月行为数据'
-            },
-            tooltip: {
-                trigger: 'item'
-            },
-            legend: {
-                orient: 'vertical',
-                left: 'left'
-            },
-            series: [{
-                name: '行为来源',
-                type: 'pie',
-                radius: '50%',
-                data: [
-                    {value: 60, name: '主动选择'},
-                    {value: 30, name: '算法推荐'},
-                    {value: 10, name: '随机浏览'}
-                ],
-                emphasis: {
-                    itemStyle: {
-                        shadowBlur: 10,
-                        shadowOffsetX: 0,
-                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+        document.addEventListener('DOMContentLoaded', function() {
+            // 时间分布图
+            const timeDistribution = echarts.init(document.getElementById('timeDistribution'));
+            timeDistribution.setOption({
+                title: {
+                    text: '24小时听力损失发生分布',
+                    left: 'center'
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    formatter: '{b}时\n新增病例: {c}例'
+                },
+                xAxis: {
+                    type: 'category',
+                    data: Array.from({length: 24}, (_, i) => i),
+                    name: '小时'
+                },
+                yAxis: {
+                    type: 'value',
+                    name: '新增病例数'
+                },
+                series: [{
+                    data: [180,160,140,120,100,90,120,150,180,200,210,220,
+                           230,220,210,200,190,180,170,160,150,140,130,120],
+                    type: 'line',
+                    smooth: true,
+                    areaStyle: {
+                        opacity: 0.3
+                    },
+                    label: {
+                        show: true,
+                        position: 'top'
                     }
-                }
-            }]
-        };
-        behaviorChart.setOption(behaviorOption);
+                }]
+            });
 
-        // 兴趣演化路径图表
-        const evolutionChart = echarts.init(document.getElementById('interestEvolution'));
-        const evolutionOption = {
-            title: {
-                text: '用户兴趣领域演化趋势',
-                subtext: '基于6个月追踪数据'
-            },
-            tooltip: {
-                trigger: 'axis'
-            },
-            legend: {
-                data: ['娱乐', '新闻', '科技', '教育', '生活']
-            },
-            xAxis: {
-                type: 'category',
-                boundaryGap: false,
-                data: ['1月', '2月', '3月', '4月', '5月', '6月']
-            },
-            yAxis: {
-                type: 'value',
-                name: '兴趣度(%)'
-            },
-            series: [
-                {
-                    name: '娱乐',
-                    type: 'line',
-                    smooth: true,
-                    data: [20, 25, 35, 45, 50, 55]
+            // 预防进展图
+            const preventionProgress = echarts.init(document.getElementById('preventionProgress'));
+            preventionProgress.setOption({
+                title: {
+                    text: '预防措施实施进展',
+                    left: 'center'
                 },
-                {
-                    name: '新闻',
-                    type: 'line',
-                    smooth: true,
-                    data: [30, 28, 25, 20, 15, 12]
+                tooltip: {
+                    trigger: 'item'
                 },
-                {
-                    name: '科技',
-                    type: 'line',
-                    smooth: true,
-                    data: [15, 22, 30, 35, 40, 45]
+                legend: {
+                    orient: 'vertical',
+                    left: 'left',
+                    top: 'middle'
                 },
-                {
-                    name: '教育',
-                    type: 'line',
-                    smooth: true,
-                    data: [25, 20, 15, 10, 8, 5]
-                },
-                {
-                    name: '生活',
-                    type: 'line',
-                    smooth: true,
-                    data: [10, 5, 5, 5, 3, 3]
-                }
-            ]
-        };
-        evolutionChart.setOption(evolutionOption);
+                series: [{
+                    name: '预防措施覆盖率',
+                    type: 'pie',
+                    radius: ['50%', '70%'],
+                    data: [
+                        {value: 85, name: '新生儿筛查', itemStyle: {color: '#91cc75'}},
+                        {value: 70, name: '疫苗接种', itemStyle: {color: '#fac858'}},
+                        {value: 60, name: '听力保护', itemStyle: {color: '#ee6666'}},
+                        {value: 50, name: '早期干预', itemStyle: {color: '#73c0de'}}
+                    ],
+                    label: {
+                        show: true,
+                        formatter: '{b}: {c}%'
+                    }
+                }]
+            });
 
-        // 社交网络同温层图表
-        const networkChart = echarts.init(document.getElementById('socialNetwork'));
-        const networkOption = {
-            title: {
-                text: '用户社交网络同温层分析',
-                subtext: '基于用户关注关系'
-            },
-            tooltip: {
-                trigger: 'item',
-                formatter: '{b}: {c}%'
-            },
-            series: [{
-                name: '社交网络分布',
-                type: 'pie',
-                radius: ['40%', '70%'],
-                avoidLabelOverlap: false,
-                itemStyle: {
-                    borderRadius: 10,
-                    borderColor: '#fff',
-                    borderWidth: 2
+            // 全球趋势图
+            const globalTrend = echarts.init(document.getElementById('globalTrend'));
+            globalTrend.setOption({
+                title: {
+                    text: '全球预防成效趋势',
+                    left: 'center'
                 },
-                label: {
-                    show: true,
-                    formatter: '{b}: {c}%'
+                tooltip: {
+                    trigger: 'axis'
                 },
-                data: [
-                    {value: 78, name: '同观点群体'},
-                    {value: 15, name: '中立群体'},
-                    {value: 7, name: '对立观点群体'}
+                legend: {
+                    data: ['发病率', '预防成功率'],
+                    top: 30
+                },
+                xAxis: {
+                    type: 'category',
+                    data: ['2019', '2020', '2021', '2022', '2023']
+                },
+                yAxis: {
+                    type: 'value',
+                    name: '百分比(%)'
+                },
+                series: [
+                    {
+                        name: '发病率',
+                        type: 'line',
+                        data: [100, 95, 88, 82, 75],
+                        label: {
+                            show: true,
+                            formatter: '{c}%'
+                        }
+                    },
+                    {
+                        name: '预防成功率',
+                        type: 'line',
+                        data: [45, 52, 60, 68, 75],
+                        label: {
+                            show: true,
+                            formatter: '{c}%'
+                        }
+                    }
                 ]
-            }]
-        };
-        networkChart.setOption(networkOption);
+            });
 
-        // 响应式调整
-        window.addEventListener('resize', function() {
-            behaviorChart.resize();
-            evolutionChart.resize();
-            networkChart.resize();
+            // 响应式调整
+            window.addEventListener('resize', function() {
+                timeDistribution.resize();
+                preventionProgress.resize();
+                globalTrend.resize();
+            });
         });
     </script>
 </body>
