@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>语法练习</title>
+</head>
+<body>
+    <h1 id="demo" onclick="alert('没事别找我')">这是标题的原始内容</h1>
+
+    <script>
+        let myh1 = document.getElementById("demo");
+        console.log(myh1);
+        //1.改变元素的内容
+        myh1.innerHTML = "这是标题的新内容";
+        //2.改变元素的样式
+        myh1.style.color = "red";
+        //3.增加事件
+        myh1.onclick = function(){
+            alert("有事也别找我");
+        }
+
+    </script>
+       
+
+    <script>
+        //类和对象
+        //1.定义一个类
+        class student{
+            //构造函数
+            constructor(name,age,school,grade){
+                this.name = name;
+                this.age = age;
+                this.school = school;
+                this.grade = grade;      
+            }
+            //方法
+            learn(subject="地理"){
+                console.log(`${this.name}正在学习${subject}`);
+            }
+            exam(){
+                console.log(`${this.name}准备考试`);
+            }
+        }
+        //2.创建对象
+        let xiaoming = new student("耿雨辰",18,"北京大学",3);
+        xiaoming.learn('地理');
+        xiaoming.exam();
+
+        class undergraduate extends student{
+            constructor(name,age,school,grade,major){
+                super(name,age,school,grade);
+                this.major=major;
+            }
+            intern(corporation){
+                console.log(`${this.name}在${corporation}实习;获得相关经验`);
+                console.log(super.exam());
+            }
+        }
+
+        //回调函数测试
+        console.log("lalallalal");
+        setTimeout(function () {
+            console.log("2222222")
+        }, 1000);
+        console.log("333333333");
+    </script>
+</body>
+</html>
